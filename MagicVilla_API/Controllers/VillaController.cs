@@ -10,16 +10,28 @@ namespace MagicVilla_Api.Controllers
     public class VillaController : ControllerBase
     {
         [HttpGet]
-        public IEnumerable<VillaDto> GetVillas()
+        public ActionResult<IEnumerable<VillaDto>> GetVillas()
         {
-            return VillaStore.villaList;
+            return Ok(VillaStore.villaList);
 
         }
 
         [HttpGet("id")]
-        public VillaDto? GetVilla(int id)
+        public ActionResult<VillaDto?> GetVilla(int id)
         {
-            return VillaStore.villaList.FirstOrDefault(v => v.Id == id);
+            if (id == 0)
+            {
+                return BadRequest();
+            }
+
+            var villa = VillaStore.villaList.FirstOrDefault(v => v.Id == id);
+
+            if (villa == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(villa);
         }
     }
 }
