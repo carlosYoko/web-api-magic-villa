@@ -1,0 +1,9 @@
+bin/
+obj/
+
+.vscode/
+.idea/
+
+*.nuget.cache/
+*.dll
+*.exe
