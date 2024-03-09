@@ -1,5 +1,5 @@
-bin/
-obj/
+MagicVilla_API/bin/
+MagicVilla_API/obj/
 
 .vscode/
 .idea/
