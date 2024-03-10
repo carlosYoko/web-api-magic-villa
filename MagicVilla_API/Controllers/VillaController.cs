@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MagicVilla_Api.Models.Dto;
 using MagicVilla_Api.Data;
-using System.Reflection.Metadata.Ecma335;
 
 namespace MagicVilla_Api.Controllers
 {
@@ -77,7 +76,6 @@ namespace MagicVilla_Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-
         public IActionResult DeleteVilla(int id)
         {
             if (id == 0)
@@ -95,6 +93,28 @@ namespace MagicVilla_Api.Controllers
 
             return NoContent();
         }
+
+        [HttpPut("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult UpdateVilla(int id, [FromBody] VillaDto villaDto)
+        {
+            if (villaDto == null || id != villaDto.Id)
+            {
+                return BadRequest();
+            }
+
+            var villa = VillaStore.villaList.FirstOrDefault(v => v.Id == id);
+            if (villa != null)
+            {
+                villa.Name = villaDto.Name;
+                villa.Occupants = villaDto.Occupants;
+                villa.SquareMeters = villaDto.SquareMeters;
+            }
+
+            return NoContent();
+        }
+
 
     };
 }
