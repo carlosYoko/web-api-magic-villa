@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MagicVilla_Api.Models.Dto;
 using MagicVilla_Api.Data;
+using System.Reflection.Metadata.Ecma335;
 
 namespace MagicVilla_Api.Controllers
 {
@@ -49,10 +50,17 @@ namespace MagicVilla_Api.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<VillaDto> AddVilla([FromBody] VillaDto villaDto)
         {
+            if (VillaStore.villaList.FirstOrDefault(v => string.Equals(v.Name, villaDto.Name, StringComparison.OrdinalIgnoreCase)) != null)
+            {
+                ModelState.AddModelError("NameExist", "Ya existe un registro con ese nombre");
+                return BadRequest(ModelState);
+            }
+
             if (villaDto == null)
             {
                 return BadRequest(villaDto);
             }
+
             if (villaDto.Id > 0)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
