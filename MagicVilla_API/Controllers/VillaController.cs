@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MagicVilla_Api.Models.Dto;
 using MagicVilla_Api.Data;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace MagicVilla_Api.Controllers
 {
@@ -112,9 +113,35 @@ namespace MagicVilla_Api.Controllers
                 villa.SquareMeters = villaDto.SquareMeters;
             }
 
-            return NoContent();
+            return CreatedAtRoute("GetVilla", new { id = villaDto.Id }, villaDto);
+
         }
 
+        [HttpPatch("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult UpdatePartialVilla(int id, JsonPatchDocument<VillaDto> patchDto)
+        {
+            if (patchDto == null || id == 0)
+            {
+                return BadRequest();
+            }
+
+            var villa = VillaStore.villaList.FirstOrDefault(v => v.Id == id);
+            if (villa == null)
+            {
+                return NotFound();
+            }
+            patchDto.ApplyTo(villa, ModelState);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            return CreatedAtRoute("GetVilla", new { id = villa.Id }, villa);
+
+        }
 
     };
 }
