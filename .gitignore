@@ -1,9 +1,9 @@
 MagicVilla_API/bin/
 MagicVilla_API/obj/
+MagicVilla_API/Migrations
 
 .vscode/
 .idea/
-
 *.nuget.cache/
 *.dll
 *.exe
