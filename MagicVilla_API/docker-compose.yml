@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-preview-ubuntu-22.04
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "My!Password0"
+      ACCEPT_EULA: "Y"
+    container_name: magicvilla-mssql
