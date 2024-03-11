@@ -36,11 +36,6 @@ namespace MagicVilla_Api.Controllers
                 return BadRequest();
             }
 
-            // if (id == 0)
-            // {
-            // return BadRequest();
-            // }
-
             var villa = VillaStore.villaList.FirstOrDefault(v => v.Id == id);
 
             if (villa == null)
