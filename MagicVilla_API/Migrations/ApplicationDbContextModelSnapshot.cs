@@ -60,6 +60,34 @@ namespace MagicVilla_API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Villas");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Amenity = "",
+                            DateCreation = new DateTime(2024, 3, 12, 6, 52, 58, 182, DateTimeKind.Local).AddTicks(9345),
+                            DateUpdated = new DateTime(2024, 3, 12, 6, 52, 58, 182, DateTimeKind.Local).AddTicks(9387),
+                            Detail = "Vistas al mar",
+                            Fee = 0.0,
+                            Name = "Villa Marina",
+                            Occupants = 5,
+                            SquareMeters = 50,
+                            UrlImage = ""
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Amenity = "",
+                            DateCreation = new DateTime(2024, 3, 12, 6, 52, 58, 182, DateTimeKind.Local).AddTicks(9395),
+                            DateUpdated = new DateTime(2024, 3, 12, 6, 52, 58, 182, DateTimeKind.Local).AddTicks(9397),
+                            Detail = "Vistas a la piscina",
+                            Fee = 0.0,
+                            Name = "Villa Piscina",
+                            Occupants = 4,
+                            SquareMeters = 45,
+                            UrlImage = ""
+                        });
                 });
 #pragma warning restore 612, 618
         }
