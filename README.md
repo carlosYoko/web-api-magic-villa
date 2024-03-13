@@ -4,7 +4,7 @@
 
 This project is an basic API for managing villas in a tourist resort.
 
-## Technologies Used
+## Technologies used
 
 - Docker
 - C#
@@ -15,14 +15,16 @@ This project is an basic API for managing villas in a tourist resort.
 - Swagger/OpenAPI: For API documentation.
 - Microsoft SQL Server: For database management.
 
-## Project Structure
+## Project structure
 
-The project is organized as follows:
+The project follows the Repository pattern and is organized as follows:
 
-- `Controllers`: Contains the API controllers.
-- `Data`: Contains the logic for accessing and manipulating data.
-- `Models`: Contains the model classes used in the application.
-- `DTO`: Contains Data Transfer Objects for mapping between API requests and model classes.
-- `Repository`: Contains interfaces and classes for data access.
+- `Controllers`: Contains the API controllers responsible for handling incoming HTTP requests and returning appropriate responses.
+- `Data`: Houses the logic for accessing and manipulating data, including interactions with the database using Entity Framework Core.
+- `Models`: Holds the model classes representing entities in the application domain, such as villas and their attributes.
+- `DTO`: Contains Data Transfer Objects (DTOs) used for mapping between API requests and model classes, facilitating communication between the client and server.
+- `Repository`: Implements the Repository pattern, providing interfaces and classes for data access. This directory encapsulates the logic for querying and persisting data, promoting a separation of concerns and enhancing maintainability and scalability.
+
+This structure ensures a clean and organized codebase, following best practices and promoting modularity and reusability.
 
 Thanks ;)
